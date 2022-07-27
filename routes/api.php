@@ -28,12 +28,12 @@ Route::post('/chat-bot', function(Request $request)
     $recipient = $request->input('From');   
 
     $message = '';
-    $menu = "Here is our Menu : \n\nA. Consult your balance \n\nB. Withdraw cash \n\nC. Information";
+    $menu = "Voici notre menu : \n\nA. Consultez votre balance \n\nB. Retirer de l'argent";
 
     $zones = "Voici nos zones: \n\nK. Kampemba \n\nL. Lubumbashi \n\nM. Kenya";
 
     //===message processing===
-    if(strpos(strtolower($body),"good afternoon") !== false
+    if(strpos(strtolower($body),"bonjour") !== false
     || strpos(strtolower($body),"bonsoir") !== false
     || strpos(strtolower($body),"salut") !== false
     || strpos(strtolower($body),'bonne après-midi') !== false
@@ -44,14 +44,14 @@ Route::post('/chat-bot', function(Request $request)
 
         if($hour <= 12)
         {
-            $greet =  "Good morning";            
+            $greet =  "Bonjour";            
         }else if ($hour > 12 && $hour <= 17){
-            $greet = "Good afternoon";
+            $greet = "Bonne après-midi";
         }else{
-            $greet = "Good evening";
+            $greet = "Bonsoir";
         }
 
-        $message = $greet.'! Welcome to Hope ChatBanking, tell us how we may help you by choosing an option from our menu:';
+        $message = $greet.'! Bienvenu chez Hope ChatBanking, comment pouvons-nous vous aider? Veuillez choisir une option sur notre menu:';
         
         //envoi du message d'acceuil
         sendWhatsAppMessage($message,$recipient);
@@ -210,7 +210,7 @@ Route::post('/chat-bot', function(Request $request)
         
     }else{
         //envoi du menu
-        $message = "We couldn't understand your message!";
+        $message = "Option invalide! Veuillez chosir une option sur notre menu";
 
         //envoi du message
         sendWhatsAppMessage($message,$recipient);
