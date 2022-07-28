@@ -208,7 +208,38 @@ Route::post('/chat-bot', function(Request $request)
         //envoi du menu
         sendWhatsAppMessage($menu,$recipient);
         
-    }else{
+    }else if(strtolower($body) == 'm1'){
+        //requet vers la BDD recuperation des atm de cette zone
+        $message = "Envoyez le message 'KENYA' pour verifier la disponibilité d'argent dans le distributeur";
+
+        //envoi du menu
+        sendWhatsAppMessage($message,$recipient);
+    }else if(strtolower($body) == 'kenya'){
+         //requet vers la BDD recuperation des atm de cette zone
+         $message = "Argent non disponible!! \n\nProposition : Veuillez aller vers l'ATM CHAUSSEE LAURANT DESIRE KABILA";
+
+         //envoi du message
+         sendWhatsAppMessage($message,$recipient);
+ 
+         //envoi du menu
+         sendWhatsAppMessage($menu,$recipient);
+    }else if(strtolower($body) == 'k1'){
+        //requet vers la BDD recuperation des atm de cette zone
+        $message = "Envoyez le message 'CARREFOUR' pour verifier la disponibilité d'argent dans le distributeur";
+
+        //envoi du menu
+        sendWhatsAppMessage($message,$recipient);
+    }else if(strtolower($body) == 'carrefour'){
+        //requet vers la BDD recuperation des atm de cette zone
+        $message = "Argent disponible!!";
+
+        //envoi du message
+        sendWhatsAppMessage($message,$recipient);
+
+        //envoi du menu
+        sendWhatsAppMessage($menu,$recipient);
+    }
+    else{
         //envoi du menu
         $message = "Option invalide! Veuillez chosir une option sur notre menu";
 
